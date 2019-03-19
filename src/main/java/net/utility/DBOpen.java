@@ -1,7 +1,16 @@
 package net.utility;
 import java.sql.*;
 
+import org.springframework.stereotype.Component;
+
+
+// Spring Container가 자동으로 객체 생성
+@Component
 public class DBOpen {
+	
+	public DBOpen() {
+		System.out.println("Start DBOpen Object");
+	}
 	
 	public Connection getConnection() {
 		//Orace DB -------------------------------------------

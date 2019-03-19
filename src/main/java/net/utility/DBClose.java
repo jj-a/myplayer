@@ -2,7 +2,14 @@ package net.utility;
 
 import java.sql.*;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class DBClose {
+	
+	public DBClose() {
+		System.out.println("Start DBOpen Object");
+	}
 
 	public void close(Connection con) {
 		try {
