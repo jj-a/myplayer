@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>16_audio.html</title>
+	<style>
+		#playlist {
+			display:table;
+			left: 50%;
+			width: 50%;	
+			border: 1px solid lightgrey;
+			box-shadow: 3px 8px 8px lavender;
+			padding: 0px 0px 20px 0px;
+		}
+		
+		#playlist>div {
+			padding: 10px 10px 10px 10px;
+		}
+		a:link {
+			color: black;
+			font-style:normal;
+			text-decoration: none;
+		}
+		hr {
+			border:1px solid lightgray;
+			margin: 30px auto 30px auto;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id="playlist" style="text-align:center">
+		<div style="text-align:center">
+			<h1>음악목록</h1>
+			<img id="poster" src="../music/gangnamstyle.jpg" style="width:300px; height:250px">
+			<br><br>
+			<audio id="audio1" src="../music/gangnamstyle.mp3" controls autoplay></audio>
+		</div>
+		<hr>
+		<div style="margin:0 auto; width:50%;">
+			<ol>
+				<li><a href="javascript:loadMusic('../music/genie.jpg','../music/genie.mp3')">소원을 말해봐</a></li>
+				<li><a href="javascript:loadMusic('../music/sheis.jpg','../music/sheis.mp3')">그녀가 처음 울던 날</a></li>
+				<li><a href="javascript:loadMusic('../music/candy.jpg','../music/candy.mp3')">내귀에 캔디</a></li>
+				<li><a href="javascript:loadMusic('../music/gangnamstyle.jpg','../music/gangnamstyle')">강남 스타일</a></li>
+			</ol>
+		</div>
+	</div>
+
+	<script>
+		function loadMusic(img,music){
+			var poster=document.getElementById("poster");
+			var audio1=document.getElementById("audio1");
+			poster.src=img;
+			audio1.src=music;
+
+			audio1.play();
+		}//loadMusic() end
+	</script>
+</body>
+
+</html>

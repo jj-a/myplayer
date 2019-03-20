@@ -1,0 +1,39 @@
+
+div, table, tr, td {
+	text-align: center;
+}
+
+hr {
+	border: 1px solid lightgray;
+	margin: 30px auto 30px auto;
+}
+
+a:link {
+	color: black;
+	font-style: normal;
+	text-decoration: none;
+}
+
+
+#playlist {
+	/*display: table;*/
+	/*left: 50%;*/
+	/*width: 50%;*/
+	border: 1px solid lightgrey;
+	box-shadow: 3px 8px 8px lavender;
+	padding: 0px 0px 20px 0px;
+	margin: 30px 10% 30px 10%;
+}
+
+#playlist>div {
+	padding: 10px 10px 10px 10px;
+}
+
+.bottom {
+	padding: 10px;
+}
+
+.bottom>input {
+	width: 100px;
+	height: 30px;
+}

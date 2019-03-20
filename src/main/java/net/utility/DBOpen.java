@@ -35,7 +35,7 @@ public class DBOpen {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, user, password);
 
-			StringBuilder sql = new StringBuilder();
+			StringBuffer sql = new StringBuffer();
 
 		} catch (Exception e) {
 			System.out.println("** DB Connection Failed ** \n"+e);
