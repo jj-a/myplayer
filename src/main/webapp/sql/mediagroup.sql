@@ -1,6 +1,6 @@
-
-
 -- mediagroup.sql
+
+
 -- 미디어 그룹 테이블 생성
 CREATE TABLE mediagroup (
 mediagroupno NUMBER NOT NULL PRIMARY KEY, 

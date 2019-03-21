@@ -25,7 +25,7 @@
 				<c:forEach var="article" items="${list }">
 					<tr>
 						<td>${article.mediagroupno }</td>
-						<td>${article.title }</td>
+						<td class="link" onclick="location.href='../media/list.do?mediagroupno=${article.mediagroupno}'" onmouseover="style='cursor:pointer;'">${article.title }</td>
 						<td><input type="button" value="수정" onclick="location.href='./update.do?mediagroupno=${article.mediagroupno}'">
 						&nbsp;<input type="button" value="삭제" onclick="location.href='./delete.do?mediagroupno=${article.mediagroupno}'"></td>
 					</tr>

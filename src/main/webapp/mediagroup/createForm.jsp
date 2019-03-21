@@ -14,14 +14,14 @@
 
 	<div class="title"><h2>미디어 그룹 등록</h2></div>
 
-	<form name="frm" method="post" action="./create.do" onsubmit="return true">
-		<table class="writefrm" border=1 style="border-collapse: collapse;">
+	<form name="frm" id="form" method="post" action="./create.do" onsubmit="return true">
+		<table class="writefrm" border=1>
 			<tr>
 				<td>미디어 그룹 제목</td>
 				<td><input type="text" name="title" id="title" value="" size="30" placeholder="그룹 제목"></td>
 			</tr>
 			<tr>
-				<td colspan=2 style="text-align:center;">
+				<td colspan=2>
 					<div class="bottom">
 						<input type="submit" value="등록">&nbsp;
 						<input type="button" value="목록" onclick="window.location.href='./list.do'">

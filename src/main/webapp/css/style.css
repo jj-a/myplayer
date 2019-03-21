@@ -1,6 +1,11 @@
 
 div, table, tr, td {
 	text-align: center;
+	margin: 0 auto;
+}
+
+table {
+	border-collapse: collapse;
 }
 
 hr {
@@ -14,6 +19,19 @@ a:link {
 	text-decoration: none;
 }
 
+.link:hover {
+	color: #dd8899;
+	font-weight: bold;
+	font-size: 1.05em;
+	background-color: #fffafa;
+	cursor: pointer;
+}
+
+#form {
+	border: 1px solid lightgrey;
+	padding: 0px 0px 20px 0px;
+	margin: 30px 10% 30px 10%;
+}
 
 #playlist {
 	/*display: table;*/
@@ -36,4 +54,8 @@ a:link {
 .bottom>input {
 	width: 100px;
 	height: 30px;
+}
+
+.title .musictitle {
+	color: pink;
 }

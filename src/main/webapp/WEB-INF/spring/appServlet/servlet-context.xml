@@ -22,6 +22,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 파일 전송 시 spring been 등록 -->
+	<!-- bean id 첫글자는 소문자 소!!!!!!!문!!!!!!!자!!!!!!!!!! 대문자로 쓰면 ERR_CONNECTION_RESET 에러 발생 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean>
 	
 	<!-- annotation으로 자동 객체 생성할 대상 설정 -->
 	<context:component-scan base-package="kr.co.myplayer" />
