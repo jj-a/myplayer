@@ -13,8 +13,8 @@
 <body>
 	<div id="playlist">
 		<div class="title">
-			<h1>PLAY AUDIO</h1>
-			<h2 class="musictitle">♬&nbsp;&nbsp;${article.title }&nbsp;&nbsp;♬</h2>
+			PLAY AUDIO
+			<p class="musictitle">♬&nbsp;&nbsp;${article.title }&nbsp;&nbsp;♬</p>
 		</div>
 		<div class="content">
 			<img id="poster" src="./storage/${article.poster }" style="width: 300px; height: 250px"> <br> <br>

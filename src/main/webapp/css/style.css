@@ -27,6 +27,12 @@ a:link {
 	cursor: pointer;
 }
 
+.list tr:hover {
+	color: #dd8899;
+	font-weight: bold;
+	background-color: #fffafa;
+}
+
 #form {
 	border: 1px solid lightgrey;
 	padding: 0px 0px 20px 0px;
@@ -43,10 +49,20 @@ a:link {
 	margin: 30px 10% 30px 10%;
 }
 
-#playlist>div {
+
+#playlist>div:not(.title) {
 	padding: 10px 10px 10px 10px;
 }
 
+div.title {
+	font-size: 30pt;
+	font-weight: 500;
+	padding-top: 30px;
+}
+
+.writetb td, .writetb th {
+	padding: 10px;
+}
 .bottom {
 	padding: 10px;
 }
@@ -58,4 +74,6 @@ a:link {
 
 .title .musictitle {
 	color: pink;
+	font-size: 0.8em;
+	margin: 20px;
 }

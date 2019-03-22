@@ -13,11 +13,10 @@
 <body>
 	<div id="playlist">
 		<div class="title">
-			<h1>PLAY VIDEO</h1>
-			<h2 class="musictitle">♬&nbsp;&nbsp;${article.title }&nbsp;&nbsp;♬</h2>
+			PLAY VIDEO
+			<span class="musictitle">♬&nbsp;&nbsp;${article.title }&nbsp;&nbsp;♬</span>
 		</div>
 		<div class="content">
-			<img id="poster" src="./storage/${article.poster }" style="width: 300px; height: 250px"> <br> <br>
 			<img id="poster" src="./storage/${article.poster }" style="width: 300px; height: 250px"> <br> <br>
 			<video id="audio1" src="./storage/${article.filename }" width="90%" controls autoplay></video>
 		</div>

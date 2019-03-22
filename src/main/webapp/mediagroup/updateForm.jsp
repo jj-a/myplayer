@@ -16,7 +16,7 @@
 
 	<form name="frm" method="post" action="./update.do" onsubmit="return true">
 		<input type="hidden" name="mediagroupno" value="${article.mediagroupno }">
-		<table class="writefrm" border=1 style="border-collapse: collapse;">
+		<table class="writetb" border=1 style="border-collapse: collapse;">
 			<tr>
 				<td>미디어 그룹 제목</td>
 				<td><input type="text" name="title" id="title" value="${article.title }" size="30" placeholder="그룹 제목"></td>

@@ -12,9 +12,7 @@
 
 <body>
 	<div id="playlist">
-		<div class="title">
-			<h1>미디어 그룹 목록</h1>
-		</div>
+		<div class="title">미디어 그룹 목록</div>
 		<div class="content">
 			<table style="width:100%">
 				<tr>

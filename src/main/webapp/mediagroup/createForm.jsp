@@ -12,10 +12,10 @@
 
 <body>
 
-	<div class="title"><h2>미디어 그룹 등록</h2></div>
+	<div class="title">미디어 그룹 등록</div>
 
 	<form name="frm" id="form" method="post" action="./create.do" onsubmit="return true">
-		<table class="writefrm" border=1>
+		<table class="writetb" border=1>
 			<tr>
 				<td>미디어 그룹 제목</td>
 				<td><input type="text" name="title" id="title" value="" size="30" placeholder="그룹 제목"></td>

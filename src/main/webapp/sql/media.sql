@@ -30,10 +30,33 @@ WHERE mview='Y' AND mediagroupno=?
 ORDER BY mediano DESC
 ;
 
-
-INSERT INTO media(mediano, title, poster, filename, filesize, mview, rdate, mediagroupno) 
-VALUES((SELECT NVL(MAX(mediano), 0)+1 FROM media), '테스트', 'test.jpg', 'test.mp3', 3000, 'Y', sysdate, 1)
+SELECT mediano, title, poster, filename, filesize, mview, rdate, mediagroupno FROM media
+WHERE mview='Y' AND mediagroupno=9
+ORDER BY mediano DESC
 ;
 
+
+
+
+INSERT INTO media(mediano, title, poster, filename, filesize, mview, rdate, mediagroupno) 
+VALUES((SELECT NVL(MAX(mediano), 0)+1 FROM media), '테스트', 'test.jpg', 'test.mp3', 3000, 'Y', sysdate, 9)
+;
+
+INSERT INTO media(mediano, title, poster, filename, filesize, mview, rdate, mediagroupno) 
+VALUES((SELECT NVL(MAX(mediano), 0)+1 FROM media), '이태원 프리덤', 'itaewonfreedom.jpg', 'itaewonfreedom.mp3', 5969271, 'Y', sysdate, 1)
+;
+
+
+UPDATE media
+SET title='test3', poster='(2)crayonpop.jpg', filename='(2)crayonpop.mp4', filesize=48130545, rdate=sysdate
+WHERE mediano=22
+;
+
+SELECT mediano, title, poster, filename, filesize, mview, rdate, mediagroupno 
+FROM media 
+WHERE mview='Y' AND mediano='test3' 
+UPDATE media 
+SET title='(7)candy.jpg', poster='(7)candy.mp3', filename=9071425, filesize=22, rdate=sysdate 
+WHERE mediano=null
 
 

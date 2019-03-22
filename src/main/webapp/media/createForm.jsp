@@ -10,7 +10,7 @@
 	<div class='title'>음원 등록</div>
 	<form name="frm" id="form" method="post" action="./create.do" enctype="multipart/form-data">
 		<input type="hidden" name="mediagroupno" value="${mediagroupno }">
-		<table align='center' border='1px' cellspacing='0px' cellpadding='5px'>
+		<table class="writetb" border=1>
 			<tr>
 				<th>제목</th>
 				<td><input type='text' name='title' size='50' value='mp3'></td>

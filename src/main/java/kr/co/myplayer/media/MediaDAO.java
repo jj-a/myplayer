@@ -1,5 +1,7 @@
 package kr.co.myplayer.media;
 
+import net.utility.LoggableStatement;
+import net.utility.UploadSaveManager;
 import net.utility.DBOpen;
 import net.utility.DBClose;
 
@@ -167,23 +169,57 @@ public class MediaDAO {
 	
 	
 	
-	public int update(MediaDTO dto) {
+	public int update(MediaDTO dto, String basePath) {
 
 		int res = 0;
 		sql=new StringBuffer();
 		
 		try {
+
+			String filename="";
+			String poster="";
+			MediaDTO oldDTO = read(dto.getMediano());
+			if (oldDTO != null) {
+				filename = oldDTO.getFilename();
+				poster = oldDTO.getPoster();
+			}
+			
+			System.out.println("dao.update()-------");
+			System.out.println("title:"+dto.getTitle());
+			System.out.println("poster:"+dto.getPoster());
+			System.out.println("filename:"+dto.getFilename());
+			System.out.println("filesize:"+dto.getFilesize());
+			System.out.println("mediano:"+dto.getMediano());
+
 			con = dbopen.getConnection();
 
+			sql.delete(0,sql.length());	// 이전 sql문장 삭제
 			sql.append("UPDATE media ");
-			sql.append("SET title=? ");
+			sql.append("SET title=?, poster=?, filename=?, filesize=?, rdate=sysdate ");
 			sql.append("WHERE mediano=? ");
 
-			pstmt = con.prepareStatement(sql.toString());
+//			pstmt = con.prepareStatement(sql.toString());	// 기존 방식
+			pstmt = new LoggableStatement(con, sql.toString());	// LoggableStatement.java파일 이용하여 query 출력할 수 있도록 구성
 			pstmt.setString(1, dto.getTitle());
-			pstmt.setInt(2, dto.getMediano());
+			pstmt.setString(2, dto.getPoster());
+			pstmt.setString(3, dto.getFilename());
+			pstmt.setLong(4, dto.getFilesize());
+			pstmt.setInt(5, dto.getMediano());
+
+			// query 출력
+			System.out.println("QUERY >>" + ((LoggableStatement) pstmt).getQueryString());
+
 
 			res = pstmt.executeUpdate();
+			
+			if(res==0) {
+				// 테이블에서 레코드가 성공적으로 삭제되면 서버 로컬 경로의 첨부파일도 삭제됨
+				Boolean res1=UploadSaveManager.deleteFile(basePath, filename);
+				Boolean res2=UploadSaveManager.deleteFile(basePath, poster);
+				if(res1==false || res2==false) {
+					throw new Exception("파일 삭제에 실패했습니다. 삭제할 파일을 찾을 수 없습니다.");
+				}
+			}
 
 		} catch (Exception e) {
 			System.out.println("*Error* 행 수정을 실패했습니다. \n" + e);
@@ -197,12 +233,21 @@ public class MediaDAO {
 	
 	
 
-	public int delete(MediaDTO dto) {
+	public int delete(MediaDTO dto, String basePath) {
 
 		int res = 0;
 		sql=new StringBuffer();
 		
 		try {
+
+			String filename="";
+			String poster="";
+			MediaDTO oldDTO = read(dto.getMediano());
+			if (oldDTO != null) {
+				filename = oldDTO.getFilename();
+				filename = oldDTO.getPoster();
+			}
+			
 			con = dbopen.getConnection();
 
 			sql.append("DELETE FROM media ");
@@ -212,6 +257,15 @@ public class MediaDAO {
 			pstmt.setInt(1, dto.getMediano());
 
 			res = pstmt.executeUpdate();
+			
+			if(res==0) {
+				// 테이블에서 레코드가 성공적으로 삭제되면 서버 로컬 경로의 첨부파일도 삭제됨
+				Boolean res1=UploadSaveManager.deleteFile(basePath, filename);
+				Boolean res2=UploadSaveManager.deleteFile(basePath, poster);
+				if(res1==false || res2==false) {
+					throw new Exception("파일 삭제에 실패했습니다. 삭제할 파일을 찾을 수 없습니다.");
+				}
+			}
 
 		} catch (Exception e) {
 			System.out.println("*Error* 행 삭제를 실패했습니다. \n" + e);

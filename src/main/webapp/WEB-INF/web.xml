@@ -29,6 +29,17 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- FileDownload Servlet -->
+	<servlet>
+		<servlet-name>filedownloadServlet</servlet-name>
+		<servlet-class>net.utility.FileDownload</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>filedownloadServlet</servlet-name>
+		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
 
 	<!-- 한글 변환 필터 -->
 	<filter>
@@ -48,5 +59,6 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 
 </web-app>

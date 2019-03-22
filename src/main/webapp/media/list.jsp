@@ -12,9 +12,7 @@
 
 <body>
 	<div id="playlist">
-		<div class="title">
-			<h1>음악 목록</h1>
-		</div>
+		<div class="title">음악 목록</div>
 		<hr>
 		<div class="list">
 			<table style="width:100%">
@@ -22,6 +20,7 @@
 					<th>번호</th>
 					<th>제목</th>
 					<th>등록일</th>
+					<th>파일정보</th>
 					<th>수정/삭제</th>
 				</tr>
 				<c:forEach var="article" items="${list }">
@@ -31,6 +30,12 @@
 							${article.title }
 						</td>
 						<td>${article.rdate }</td>
+						<td>
+							<c:set var="filesize" value="${fn:substringBefore(article.filesize/1024, '.') }" />
+							${article.filename }
+							<br><h6 style="margin:5 auto;">(${filesize }KB)</h6>
+							<input type="button" value="다운로드" onclick="location.href='${root}/download?dir=/media/storage&filename=${article.filename }'">
+						</td>
 						<td><input type="button" value="수정" onclick="location.href='./update.do?mediano=${article.mediano}'">
 						&nbsp;<input type="button" value="삭제" onclick="location.href='./delete.do?mediano=${article.mediano}'"></td>
 					</tr>
