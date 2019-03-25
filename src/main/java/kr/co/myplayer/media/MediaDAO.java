@@ -168,8 +168,9 @@ public class MediaDAO {
 	} // read() end
 	
 	
-	
+	// 파일 포함 수정
 	public int update(MediaDTO dto, String basePath) {
+		System.out.println("update() - 파일 포함 수정");
 
 		int res = 0;
 		sql=new StringBuffer();
@@ -220,6 +221,42 @@ public class MediaDAO {
 					throw new Exception("파일 삭제에 실패했습니다. 삭제할 파일을 찾을 수 없습니다.");
 				}
 			}
+
+		} catch (Exception e) {
+			System.out.println("*Error* 행 수정을 실패했습니다. \n" + e);
+		} finally {
+			dbclose.close(con, pstmt);
+		}
+		
+		return res;
+		
+	} // update() end
+	
+	
+	// 제목만 수정
+	public int update(MediaDTO dto) {
+		System.out.println("update() - 제목만 수정");
+
+		int res = 0;
+		sql=new StringBuffer();
+		
+		try {
+
+			con = dbopen.getConnection();
+
+			sql.append("UPDATE media ");
+			sql.append("SET title=?, rdate=sysdate ");
+			sql.append("WHERE mediano=? ");
+
+//			pstmt = con.prepareStatement(sql.toString());	// 기존 방식
+			pstmt = new LoggableStatement(con, sql.toString());	// LoggableStatement.java파일 이용하여 query 출력할 수 있도록 구성
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setInt(2, dto.getMediano());
+
+			// query 출력
+			System.out.println("QUERY >>" + ((LoggableStatement) pstmt).getQueryString());
+
+			res = pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			System.out.println("*Error* 행 수정을 실패했습니다. \n" + e);

@@ -126,9 +126,6 @@ public class MediaController {
 
 		dto=dao.read(dto.getMediano());
 		
-		System.out.println(dto.getMediano());
-		System.out.println(dto.getMediagroupno());
-		
 		mav.addObject("root", Utility.getRoot());
 		mav.addObject("article", dto);
 		
@@ -149,8 +146,11 @@ public class MediaController {
 		
 		String basePath=req.getRealPath("/media/storage");
 		System.out.println("basePath: "+basePath);
+		
+		Boolean isModifyFile=false;
 
-		if(dto.getPosterMF()!=null) {	// 포스터 파일 수정 시
+		if(dto.getPosterMF().getSize()>0) {	// 포스터 파일 수정 시 (포스터 업로드)
+			isModifyFile=true;
 			MultipartFile posterMF=dto.getPosterMF();
 			System.out.println("posterMF: "+posterMF);
 			String poster=UploadSaveManager.saveFileSpring30(posterMF, basePath);	// 파일 저장 후 rename된 파일명 반환
@@ -158,7 +158,8 @@ public class MediaController {
 			dto.setPoster(poster);
 		}
 
-		if(dto.getFilenameMF()!=null) {	// 미디어 파일 수정 시
+		if(dto.getFilenameMF().getSize()>0) {	// 미디어 파일 수정 시 (미디어파일 업로드)
+			isModifyFile=true;
 			MultipartFile filenameMF=dto.getFilenameMF();
 			String filename=UploadSaveManager.saveFileSpring30(filenameMF, basePath);	// 파일 저장 후 rename된 파일명 반환
 			dto.setFilename(filename);
@@ -166,15 +167,17 @@ public class MediaController {
 		}
 		
 		// DB 수정 및 기존 파일 삭제 수행
-		int result=dao.update(dto, basePath);
+		int result;
+		if(isModifyFile) result=dao.update(dto, basePath);
+		else result=dao.update(dto);
 		
 		if(result==0) {
 			mav.addObject("msg1", "수정 실패하였습니다. ");
 			mav.addObject("img", "<img src='../images/original_17.gif'>");
 			mav.addObject("link1", "<input type='button' value='다시시도' onclick='javascript:history.back()'>");
-			mav.addObject("link2", "<input type='button' value='목록' onclick='location.href=\"./list.do\"'>");
+			mav.addObject("link2", "<input type='button' value='목록' onclick='location.href=\"./list.do?mediagroupno="+dto.getMediagroupno()+"\"'>");
 		}else {
-			mav.addObject("article", dto);
+//			mav.addObject("article", dto);
 			mav.addObject("msg1", "수정되었습니다. ");
 			mav.addObject("img", "<img src='../images/muzi2.gif'>");
 			mav.addObject("link2", "<input type='button' value='목록' onclick='location.href=\"./list.do?mediagroupno="+dto.getMediagroupno()+"\"'>");
